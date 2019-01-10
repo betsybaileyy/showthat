@@ -18,7 +18,13 @@ let TVS = [
     { title: "The Americans", genre: "action"},
     { title: "Ray Donovan", genre: "drama"},
     { title: "The Marvelous Mrs. Mazel", genre: "comedy"}
-]
+];
+
+let genreTVS = TVS.filter(function(TVS) {
+    return TVS.genre == "action";
+})
+
+console.log(genreTVS)
 
 app.get('/', (req, res) => {
   res.render('layouts/home', { msg: 'heyooo' })
@@ -35,6 +41,6 @@ app.post('/',(req,res) =>{
 const port = process.env.PORT || 3000;
 app.listen(port);
 
-app.listen(3000, () => {
-  console.log('App listening on port 3000!')
-})
+// app.listen(3000, () => {
+//   console.log('App listening on port 3000!')
+// })
