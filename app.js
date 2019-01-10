@@ -12,9 +12,9 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 let TVS = [
-    { title: "The Americans"},
-    { title: "Ray Donovan"},
-    { title: "The Marvelous Mrs. Mazel"}
+    { title: "The Americans", genre: "action"},
+    { title: "Ray Donovan", genre: "drama"},
+    { title: "The Marvelous Mrs. Mazel", genre: "comedy"}
 ]
 
 app.get('/', (req, res) => {
