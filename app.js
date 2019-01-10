@@ -32,6 +32,9 @@ app.post('/',(req,res) =>{
     console.log(req.body)
 })
 
+const port = process.env.PORT || 3000;
+app.listen(port);
+
 app.listen(3000, () => {
   console.log('App listening on port 3000!')
 })
