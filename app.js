@@ -3,6 +3,9 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const app = express();
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/showthat');
 
 app.use(bodyParser.urlencoded({
   extended: true
