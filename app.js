@@ -54,7 +54,15 @@ app.get('/thoughts/new', (req, res) => {
 app.post('/thoughts', (req, res) => {
     Thought.create(req.body).then((thought) => {
         console.log(thought);
-        res.redirect('/thoughts');
+        res.redirect(`/thoughts/${thought._id}`);
+    }).catch((err) => {
+        console.log(err.message);
+    })
+})
+
+app.get('/thoughts/:id', (req, res) => {
+    Thought.findById(req.params.id).then((thought) => {
+        res.render('thoughts-show', { thought: thought })
     }).catch((err) => {
         console.log(err.message);
     })
