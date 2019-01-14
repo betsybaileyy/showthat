@@ -31,7 +31,7 @@ let genreTVS = TVS.filter(function(TVS) {
     return TVS.genre == "action";
 })
 
-console.log(genreTVS)
+// console.log(genreTVS)
 
 app.get('/', (req, res) => {
   res.render('layouts/home', { msg: 'heyooo' })
@@ -45,6 +45,19 @@ app.get('/thoughts', (req, res) => {
         .catch(err => {
             console.log(err);
         })
+})
+
+app.get('/thoughts/new', (req, res) => {
+    res.render('thoughts-new', {});
+})
+
+app.post('/thoughts', (req, res) => {
+    Thought.create(req.body).then((thought) => {
+        console.log(thought);
+        res.redirect('/thoughts');
+    }).catch((err) => {
+        console.log(err.message);
+    })
 })
 
 app.get('/TVS', (req, res) => {
