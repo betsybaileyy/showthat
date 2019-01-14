@@ -1,0 +1,10 @@
+<h1>Thoughts</h1>
+
+<div class="row">
+  {{#each thoughts}}
+    <div class="col-sm-3">
+      <h2><a href="/thoughts/{{this._id}}">{{this.show}}</a></h2>
+      <small>{{this.content}}</small>
+    </div>
+  {{/each}}
+</div>

@@ -14,6 +14,13 @@ app.use(bodyParser.json());
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
+
+//Thought will be like a review or comment 'thoughts on this show'
+const Thought = mongoose.model('Thought', {
+    show: String,
+    content: String,
+})
+
 let TVS = [
     { title: "The Americans", genre: "action"},
     { title: "Ray Donovan", genre: "drama"},
@@ -30,8 +37,22 @@ app.get('/', (req, res) => {
   res.render('layouts/home', { msg: 'heyooo' })
 })
 
+app.get('/thoughts', (req, res) => {
+    Thought.find()
+        .then(thoughts => {
+            res.render('thoughts-index', { thoughts: thoughts });
+        })
+        .catch(err => {
+            console.log(err);
+        })
+})
+
 app.get('/TVS', (req, res) => {
     res.render('TVS-index', { TVS: TVS });
+})
+
+app.get('/genre', (req, res) => {
+    res.render('genre-index', { TVS: TVS });
 })
 
 app.post('/',(req,res) =>{
