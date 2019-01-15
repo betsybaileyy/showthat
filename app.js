@@ -77,7 +77,7 @@ app.get('/thoughts/:id/edit', (req, res) => {
 })
 
 app.put('/thoughts/:id', (req, res) => {
-    Thought.findByIdAndUpdate(req.params.id, req,body)
+    Thought.findByIdAndUpdate(req.params.id, req.body)
     .then(thought => {
         res.redirect(`/thoughts/${thought._id}`)
     })
