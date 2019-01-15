@@ -2,6 +2,7 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 const app = express();
 const mongoose = require('mongoose');
 
@@ -11,6 +12,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
+app.use(methodOverride('_method'))
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
@@ -65,6 +67,22 @@ app.get('/thoughts/:id', (req, res) => {
         res.render('thoughts-show', { thought: thought })
     }).catch((err) => {
         console.log(err.message);
+    })
+})
+
+app.get('/thoughts/:id/edit', (req, res) => {
+    Thought.findById(req.params.id, function(err, thought) {
+        res.render('thoughts-edit', {thought: thought});
+    })
+})
+
+app.put('/thoughts/:id', (req, res) => {
+    Thought.findByIdAndUpdate(req.params.id, req,body)
+    .then(thought => {
+        res.redirect(`/thoughts/${thought._id}`)
+    })
+    .catch(err => {
+        console.log(err.message)
     })
 })
 

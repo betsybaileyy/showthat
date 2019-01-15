@@ -1,21 +1,66 @@
-<h1>{{msg}}</h1>
+<!-- <h1>{{msg}}</h1> -->
+{{> header }}
 
-<h2><a href="./TVS">Featured Shows</h2>
+<div class="container-fluid">
+    <div class="row home-row">
+        <div class="col-md-12">
+            <div class="dropdown-container dropdown show">
+                <h2 class="home-genre-title">Choose a Genre:</h2>
 
-    <div class="dropdown show">
-      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Genre
-      </a>
-
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="./genre">Action</a>
-        <a class="dropdown-item" href="./genre">Comedy</a>
-        <a class="dropdown-item" href="./genre">Drama</a>
-      </div>
+              <a class=" the-pink-dropdown btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Genre
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="./genre">Action</a>
+                <a class="dropdown-item" href="./genre">Comedy</a>
+                <a class="dropdown-item" href="./genre">Drama</a>
+              </div>
+            </div>
+        </div>
     </div>
 
-<h4><a href="./thoughts">What People Have to Say</h4>
+</div>
 
+
+<style>
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffd1dc;
+}
+
+.home-row {
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.home-genre-title {
+    font-weight:bolder;
+}
+
+.the-pink-dropdown {
+    background-color: white;
+    color: black;
+    padding: 10px 30px;
+    font-size: 17px;
+    margin-top: 15px;
+
+    -webkit-box-shadow: 5px 21px 64px -2px rgba(255,242,255,1);
+    -moz-box-shadow: 5px 21px 64px -2px rgba(255,242,255,1);
+    box-shadow: 5px 21px 64px -2px rgba(255,242,255,1);
+}
+.dropdown-container {
+    border: 2px solid;
+    padding-top: 4em;
+    padding-bottom: 4em;
+    border-color: white;
+    max-width: 75%;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+</style>
 
 <!-- <form action='/' method="post">
   <div class="form-group">
