@@ -23,17 +23,21 @@ const Thought = mongoose.model('Thought', {
     content: String,
 })
 
-const TVS = mongoose.model('TVS', {
+const Tvs = mongoose.model('Tvs', {
     title: String,
     description: String,
     beschdelTest: Boolean
 })
 
-// let TVS = [
-//     { title: "The Americans", genre: "action"},
-//     { title: "Ray Donovan", genre: "drama"},
-//     { title: "The Marvelous Mrs. Mazel", genre: "comedy"}
-// ];
+const WatchlistItem = mongoose.model('WatchlistItem', {
+    show: String
+})
+
+let TVS = [
+    { title: "The Americans", genre: "action"},
+    { title: "Ray Donovan", genre: "drama"},
+    { title: "The Marvelous Mrs. Mazel", genre: "comedy"}
+];
 
 // let genreTVS = TVS.filter(function(TVS) {
 //     return TVS.genre == "action";
@@ -118,6 +122,64 @@ app.post('/TVS', (req, res) => {
     })
 })
 
+//Routes for CRUDing a new show to your Watchlist
+
+app.get('/watchlist', (req, res) => {
+    WatchlistItem.find()
+        .then(watchlistItem => {
+            res.render('watchlist-index', { watchlistItem: watchlistItem });
+        })
+        .catch(err => {
+            console.log(err);
+        })
+})
+
+app.get('/watchlist/new', (req, res) => {
+    res.render('watchlist-new', {});
+})
+
+app.post('/watchlist', (req, res) => {
+    WatchlistItem.create(req.body).then((watchlistItem) => {
+        console.log(watchlistItem);
+        res.redirect(`/watchlist`);
+    }).catch((err) => {
+        console.log(err.message);
+    })
+})
+
+//
+app.get('/watchlist/:id', (req, res) => {
+    WatchlistItem.findById(req.params.id).then((watchlistItem) => {
+        res.render('watchlist-show', { watchlistItem: watchlistItem })
+    }).catch((err) => {
+        console.log(err.message);
+    })
+})
+
+app.get('/watchlist/:id/edit', (req, res) => {
+    WatchlistItem.findById(req.params.id, function(err, watchlistItem) {
+        res.render('watchlist-edit', {watchlistItem: watchlistItem});
+    })
+})
+
+app.put('/watchlist/:id', (req, res) => {
+    WatchlistItem.findByIdAndUpdate(req.params.id, req.body)
+    .then(watchlistItem => {
+        res.redirect(`/watchlist/${watchlistItem._id}`)
+    })
+    .catch(err => {
+        console.log(err.message)
+    })
+})
+
+app.delete('/watchlist/:id', function (req, res) {
+    console.log("DELETE watchlist item")
+    WatchlistItem.findByIdAndRemove(req.params.id).then((watchlistItem) => {
+        res.redirect('/watchlist');
+    }).catch((err) => {
+        console.log(err.message);
+    })
+})
 
 //Other Routes
 app.get('/TVS', (req, res) => {

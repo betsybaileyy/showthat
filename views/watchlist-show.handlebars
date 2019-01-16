@@ -1,0 +1,13 @@
+{{> header }}
+<a href="/">Back to Home</a>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <h1>{{watchlistItem.show}}</h1>
+
+    <p><a href="/watchlist/{{watchlistItem._id}}/edit">Edit</a><p>
+<p><form method="POST" action="/watchlist/{{watchlistItem._id}}?_method=DELETE">
+    <button type="submit">Delete</button>
+</form></p>
+
+  </div>
+</div>

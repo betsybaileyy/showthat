@@ -1,0 +1,13 @@
+
+{{> header }}
+ <h1>Your Watchlist:</h1>
+ <div class="row">
+   {{#each watchlistItem}}
+     <div class="col-sm-3">
+       <h2><a href="/watchlist/{{this._id}}">{{this.show}}</a></h2>
+
+     </div>
+   {{/each}}
+ </div>
+
+  <a href="/watchlist/new">Add to Your Watchlist</a>
