@@ -5,7 +5,9 @@
     <h1>{{thought.show}}</h1>
     <h2>{{thought.content}}</h2>
     <p><a href="/thoughts/{{thought._id}}/edit">Edit</a><p>
-
+<p><form method="POST" action="/thoughts/{{thought._id}}?_method=DELETE">
+    <button type="submit">Delete</button>
+</form></p>
 
   </div>
 </div>

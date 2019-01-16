@@ -23,15 +23,21 @@ const Thought = mongoose.model('Thought', {
     content: String,
 })
 
-let TVS = [
-    { title: "The Americans", genre: "action"},
-    { title: "Ray Donovan", genre: "drama"},
-    { title: "The Marvelous Mrs. Mazel", genre: "comedy"}
-];
-
-let genreTVS = TVS.filter(function(TVS) {
-    return TVS.genre == "action";
+const TVS = mongoose.model('TVS', {
+    title: String,
+    description: String,
+    beschdelTest: Boolean
 })
+
+// let TVS = [
+//     { title: "The Americans", genre: "action"},
+//     { title: "Ray Donovan", genre: "drama"},
+//     { title: "The Marvelous Mrs. Mazel", genre: "comedy"}
+// ];
+
+// let genreTVS = TVS.filter(function(TVS) {
+//     return TVS.genre == "action";
+// })
 
 // console.log(genreTVS)
 
@@ -48,6 +54,8 @@ app.get('/thoughts', (req, res) => {
             console.log(err);
         })
 })
+
+//Routes for creating a new Thought
 
 app.get('/thoughts/new', (req, res) => {
     res.render('thoughts-new', {});
@@ -86,6 +94,32 @@ app.put('/thoughts/:id', (req, res) => {
     })
 })
 
+app.delete('/thoughts/:id', function (req, res) {
+    console.log("DELETE thought")
+    Thought.findByIdAndRemove(req.params.id).then((thought) => {
+        res.redirect('/thoughts');
+    }).catch((err) => {
+        console.log(err.message);
+    })
+})
+
+//Routes for CRUDing a new Show
+
+app.get('/TVS/new', (req, res) => {
+    res.render('TVS-new', {});
+})
+
+app.post('/TVS', (req, res) => {
+    TVS.create(req.body).then((tvs) => {
+        console.log(thought);
+        res.redirect(`/TVS/${tvs._id}`);
+    }).catch((err) => {
+        console.log(err.message);
+    })
+})
+
+
+//Other Routes
 app.get('/TVS', (req, res) => {
     res.render('TVS-index', { TVS: TVS });
 })
