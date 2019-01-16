@@ -2,6 +2,15 @@
 <h1>Featured Shows</h1>
 {{#each TVS}}
 
-     <li>{{this.title}}</li>
 
- {{/each}}
+ <div class="card" style="width: 18rem;">
+   <div class="card-body">
+     <h5 class="card-title"><li>{{this.title}}</li></h5>
+     <h6 class="card-subtitle mb-2 text-muted">{{this.genre}}</h6>
+     <p class="card-text">{{this.description}}</p>
+
+
+   </div>
+ </div>
+
+  {{/each}}

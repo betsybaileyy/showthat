@@ -34,9 +34,9 @@ const WatchlistItem = mongoose.model('WatchlistItem', {
 })
 
 let TVS = [
-    { title: "The Americans", genre: "action"},
-    { title: "Ray Donovan", genre: "drama"},
-    { title: "The Marvelous Mrs. Mazel", genre: "comedy"}
+    { title: "The Americans", genre: "action", description: "At the height of the Cold War two Russian agents pose as your average American couple, complete with family."},
+    { title: "Ray Donovan", genre: "drama", description: "Ray Donovan, a professional fixer for the rich and famous in Los Angeles, can make anyone's problems disappear except those created by his own family."},
+    { title: "The Marvelous Mrs. Mazel", genre: "comedy", description: "A housewife in the 1950s decides to become a stand-up comic."}
 ];
 
 // let genreTVS = TVS.filter(function(TVS) {
