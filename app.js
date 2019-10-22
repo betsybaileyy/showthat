@@ -194,6 +194,15 @@ app.post('/',(req,res) =>{
     console.log(req.body)
 })
 
+// SEARCH PET
+app.get('/search', (req, res) => {
+  term = new RegExp(req.query.term, 'i')
+
+  WatchlistItem.find({'name': term}).exec((err, TVS) => {
+    res.render('TVS-index', { TVS: TVS });
+  })
+});
+
 const port = process.env.PORT || 3000;
 app.listen(port);
 
